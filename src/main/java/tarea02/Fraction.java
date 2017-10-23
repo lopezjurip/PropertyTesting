@@ -30,8 +30,16 @@ public class Fraction {
         if (denominator == 0) {
             throw new IllegalArgumentException("Denominator can not equal to 0");
         }
-		this.numerator = numerator;
-		this.denominator = denominator;
+        if (numerator < 0 && denominator < 0) {
+            this.numerator = Math.abs(numerator);
+            this.denominator = Math.abs(denominator);
+        } else if (denominator < 0) {
+            this.numerator = numerator * -1;
+            this.denominator = denominator * -1;
+        } else {
+            this.numerator = numerator;
+            this.denominator = denominator;
+        }
 	}
 	
 	////////////~~~ARITHMETIC OPERATORS~~~////////////
@@ -116,7 +124,7 @@ public class Fraction {
 	 * a > b
 	 * */
 	public static boolean gThan(Fraction a, Fraction b) {
-        return a.numerator / a.denominator > b.numerator / b.denominator;
+        return (a.numerator / a.denominator) > (b.numerator / b.denominator);
 	}
 	
 	/**
@@ -125,4 +133,20 @@ public class Fraction {
 	public static boolean lThan(Fraction a, Fraction b) {
         return a.numerator / a.denominator < b.numerator / b.denominator;
 	}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!Fraction.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        return Fraction.equals(this, (Fraction) obj);
+    }
+
+    @Override
+    public String toString() {
+        return this.numerator+ "/" + this.denominator;
+    }
 }

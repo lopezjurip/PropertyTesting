@@ -14,7 +14,7 @@ public class NaturalGenerator extends Generator<Natural> {
 	 * */
 	public Natural generate(SourceOfRandomness source, GenerationStatus gStatus) {
 		return new Natural(
-					source.nextInt(0, 100000000)
+					source.nextInt(0, 1000)
 				);
 	}
 }

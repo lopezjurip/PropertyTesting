@@ -5,15 +5,19 @@ import com.pholser.junit.quickcheck.generator.Generator;
 import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 
 public class FractionGenerator extends Generator<Fraction> {
+	private static final int MIN = -100;
+	private static final int MAX = 100;
 
 	public FractionGenerator() {
 		super(Fraction.class);
 	}
-	
-	/**
-	 * At least for integers, this is straightforward
-	 * */
+
 	public Fraction generate(SourceOfRandomness source, GenerationStatus gStatus) {
-		return new Fraction(source.nextInt(0, 100000000), source.nextInt(1, 100000000));
+		while (true) {
+			int denominator = source.nextInt(MIN, MAX);
+			if (denominator != 0) {
+				return new Fraction(source.nextInt(MIN, MAX), denominator);
+			}
+		}
 	}
 }

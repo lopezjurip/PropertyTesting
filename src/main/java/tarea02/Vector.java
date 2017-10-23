@@ -64,6 +64,7 @@ public class Vector {
 		Fraction x = Fraction.div(a.x, b.x);
 		Fraction y = Fraction.div(a.y, b.y);
 		Fraction z = Fraction.div(a.z, b.z);
+        return new Vector(x, y, z);
 	}
 	
 	/**

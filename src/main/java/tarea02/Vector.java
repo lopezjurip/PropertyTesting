@@ -135,4 +135,20 @@ public class Vector {
 	public static boolean equals(Vector a, Vector b) {
 		return Fraction.equals(a.x, b.x) && Fraction.equals(a.y, b.y) && Fraction.equals(a.z, b.z);
 	}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!Vector.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        return Vector.equals(this, (Vector) obj);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s, %s, %s]", this.x, this.y, this.z);
+    }
 }

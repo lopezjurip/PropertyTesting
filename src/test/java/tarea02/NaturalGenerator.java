@@ -17,5 +17,4 @@ public class NaturalGenerator extends Generator<Natural> {
 					source.nextInt(0, 100000000)
 				);
 	}
-
 }

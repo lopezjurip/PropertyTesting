@@ -4,18 +4,34 @@ package tarea02;
  * A representation of a rational number
  * */
 public class Fraction {
-	
+
+	private int numerator;
+    private int denominator;
+
+	public int Numerator() {
+		return numerator;
+	}
+    public int Denominator() {
+        return denominator;
+    }
+
 	/**
 	 * A' = A.normalized() is such that 
 	 * gcd(A'.numerator, A'.denominator) = 1
 	 * */
 	public Fraction normalized() {
-		//TODO stub
-		return null;
+		int gcd = Utils.greatestCommonDenominator(this.numerator, this.denominator);
+		int numerator = this.numerator / gcd;
+        int denominator = this.denominator / gcd;
+		return new Fraction(numerator, denominator);
 	}
 
 	public Fraction(int numerator, int denominator) {
-		//TODO stub
+        if (denominator == 0) {
+            throw new IllegalArgumentException("Denominator can not equal to 0");
+        }
+		this.numerator = numerator;
+		this.denominator = denominator;
 	}
 	
 	////////////~~~ARITHMETIC OPERATORS~~~////////////
@@ -26,32 +42,29 @@ public class Fraction {
 	 * a + b
 	 * */
 	public static Fraction add(Fraction a, Fraction b) {
-		//TODO stub
-		return null;
+		int denominator = a.denominator * b.denominator;
+		return new Fraction(a.numerator * b.denominator + b.numerator * a.denominator, denominator);
 	}
 	
 	/**
 	 * a - b
 	 * */
 	public static Fraction sub(Fraction a, Fraction b) {
-		//TODO stub
-		return null;
+		return Fraction.add(a, Fraction.neg(b));
 	}
 	
 	/**
 	 * a x b
 	 * */
 	public static Fraction mul(Fraction a, Fraction b) {
-		//TODO stub
-		return null;
+		return new Fraction(a.numerator * b.numerator, a.denominator * b.denominator);
 	}
 	
 	/**
 	 * a / b
 	 * */
 	public static Fraction div(Fraction a, Fraction b) {
-		//TODO stub
-		return null;
+		return Fraction.mul(a, Fraction.invMultiplicative(b));
 	}
 	
 
@@ -61,16 +74,14 @@ public class Fraction {
 	 * -a
 	 * */
 	public static Fraction neg(Fraction a) {
-		//TODO stub
-		return null;
+		return new Fraction(a.numerator * -1, a.denominator);
 	}
 	
 	/**
 	 * 1 / a
 	 * */
 	public static Fraction invMultiplicative(Fraction a) {
-		//TODO stub
-		return null;
+		return new Fraction(a.denominator, a.numerator);
 	}
 	
 
@@ -80,41 +91,38 @@ public class Fraction {
 	 * 1
 	 * */
 	public static Fraction one() {
-		//TODO stub
-		return null;
+		return new Fraction(1, 1);
 	}
 	
 	/**
 	 * 0
 	 * */
 	public static Fraction zero() {
-		//TODO stub
-		return null;
+		return new Fraction(0, 1);
 	}
 	
 	////////////~~~BOOLEAN OPERATORS~~~////////////
-		
+
 	/**
 	 * a == b
 	 * */
 	public static boolean equals(Fraction a, Fraction b) {
-		//TODO stub
-		return false;
+		Fraction aNormalized = a.normalized();
+        Fraction bNormalized = b.normalized();
+		return aNormalized.numerator == bNormalized.numerator && aNormalized.denominator == bNormalized.denominator;
 	}
 	
 	/**
 	 * a > b
 	 * */
 	public static boolean gThan(Fraction a, Fraction b) {
-		//TODO stub
-		return false;
+        return a.numerator / a.denominator > b.numerator / b.denominator;
 	}
 	
 	/**
 	 * a < b
 	 * */
 	public static boolean lThan(Fraction a, Fraction b) {
-		//TODO stub
-		return false;	
+        return a.numerator / a.denominator < b.numerator / b.denominator;
 	}
 }

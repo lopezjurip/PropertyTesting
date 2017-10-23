@@ -2,7 +2,13 @@
 
 > Patricio López Juri (1263476J)
 
-## 1.A
+## Resultados
+
+Ver [`RESULTS.html`](./RESULTS.html).
+
+## Análisis
+
+### 1.A
 
 Las ventajas es que permite abstraerse de definir valores del dominio manualmente. Esto permite evitar sesgos del implementador del test y posiblemente probar elementos que una persona común no probaría.
 
@@ -16,7 +22,7 @@ Con eso en teoría puede abordar los números bordes y críticos de los enteros,
 
 Otra ventaja es la formalidad matemática. Como ejemplo si se hace un correcto estudio del dominio del _input_, es posible obtener un mayor grado de coverage y mejor correctitud.
 
-## 1.B
+### 1.B
 
 Nuevamente, puede confirmar correctitud del funcionamiento pero no puede asegurar la ausencia de _bugs_.
 
